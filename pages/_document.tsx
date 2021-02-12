@@ -1,12 +1,17 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
+import { ReactElement } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
-class MyDocument extends Document {
-  props: { styleTags: any }
-
-  static async getInitialProps({ renderPage }) {
+class MyDocument extends Document<{ styleTags: Array<ReactElement> }> {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
-    const page = renderPage((App) => (props) =>
+    const page = ctx.renderPage((App) => (props) =>
       sheet.collectStyles(<App {...props} />),
     )
     const styletTags = sheet.getStyleElement()
