@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "app-root/*": ["*"],
+      "app-components/*": ["src/components/*"],
+      "app-contexts/*": ["src/contexts/*"],
+      "app-libs/client/*": ["src/libs/client/*"],
+      "app-libs/server/*": ["src/libs/server/*"],
+      "app-styles/*": ["styles/*"],
+      "app-pages/*": ["pages/*"],
+      "app-api/*": ["pages/api/*"]
+    },
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "exclude": ["node_modules"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.json",
+    "**/*.css",
+    "**/*.scss"
+  ]
+}

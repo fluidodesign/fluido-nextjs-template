@@ -1,0 +1,25 @@
+# dependencies
+/node_modules
+*.pnp*
+
+# testing
+/coverage
+*.test*
+
+# production
+/.next/
+/out/
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+*.log*
+
+# local env files
+*.env*
+
+# vercel
+.vercel

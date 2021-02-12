@@ -1,0 +1,39 @@
+{
+  "Create React function component": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "rcomp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "",
+      "const ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi} = ({}) => {",
+      "  return (",
+      "  <div></div>",
+      "  )",
+      "}",
+      "",
+      "${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}.propTypes = {}",
+      "",
+      "export default ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}"
+    ]
+  },
+  "Create React function component with ref": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "rcompr",
+    "body": [
+      "import { forwardRef } from 'react'",
+      "import PropTypes from 'prop-types'",
+      "",
+      "const _${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi} = ({}, ref) => {",
+      "  return (",
+      "  <div ref={ref}></div>",
+      "  )",
+      "}",
+      "",
+      "const ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi} = forwardRef(_${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi})",
+      "",
+      "${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}.propTypes = {}",
+      "",
+      "export default ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}"
+    ]
+  }
+}
