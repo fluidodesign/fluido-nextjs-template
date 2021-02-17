@@ -3,11 +3,11 @@ import cors from 'cors'
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import firebaseAdmin from './firebase-admin-init'
 
-interface CustomResponse<T = any> extends NextApiResponse<T> {
+export interface CustomResponse<T = any> extends NextApiResponse<T> {
   cookie: (key: string, value: any, opt?: object) => void
 }
 
-interface CustomRequest extends NextApiRequest {
+export interface CustomRequest extends NextApiRequest {
   claimsRef: any
   userRef: any
   user: firebaseAdmin.auth.DecodedIdToken
@@ -15,15 +15,21 @@ interface CustomRequest extends NextApiRequest {
   claims: {}
 }
 
+export type CustomHandler = (
+  request: CustomRequest,
+  response: CustomResponse,
+  next?: RouterNext,
+) => void | any | Promise<void> | Promise<any>
+
 type RouterNext = (error?: Error) => void
 
-type Router = (
+type RouterHandler = (
   request: NextApiRequest,
   response: CustomResponse,
-  next: RouterNext,
+  next?: RouterNext,
 ) => void
 
-export const MiddlewareWrapper = (...routes: [NextApiHandler]) => {
+export const MiddlewareWrapper = (...routes: CustomHandler[] | any[]) => {
   return async (request: NextApiRequest, response: CustomResponse) => {
     const setCookie = (key: string, value: any, opt: object = {}) => {
       const cookieSerialize = cookie.serialize(key, value, {
@@ -37,7 +43,7 @@ export const MiddlewareWrapper = (...routes: [NextApiHandler]) => {
     response.cookie = setCookie
 
     await [cors()].concat(routes).reduce(
-      (promise: Promise<any>, fn: Router) =>
+      (promise: Promise<any>, fn: RouterHandler) =>
         promise.then(
           () =>
             new Promise((resolve, reject) => {
