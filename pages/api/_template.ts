@@ -1,12 +1,11 @@
 import { JSONSchema7 } from 'json-schema'
 import { Validator } from 'express-json-validator-middleware'
 import {
-  CustomRequest,
-  CustomResponse,
   MiddlewareWrapper,
   filterMethod,
   routeVerifyToken,
-} from 'app-libs/server/utils'
+} from 'app-libs/server/api-utils'
+import { AppRequest, AppResponse } from 'app-root/next-env'
 
 const bodySchema: JSONSchema7 = {
   type: 'object',
@@ -19,7 +18,7 @@ export default MiddlewareWrapper(
   filterMethod('POST'),
   routeVerifyToken,
   validator.validate({ body: bodySchema }),
-  (request: CustomRequest, response: CustomResponse) => {
+  (request: AppRequest, response: AppResponse) => {
     if (!request.user)
       return response.status(401).json({ message: 'unauthorized' })
 

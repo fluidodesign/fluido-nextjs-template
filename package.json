@@ -25,6 +25,8 @@
     "i18next": "^19.8.8",
     "i18next-browser-languagedetector": "^6.0.1",
     "inputmask": "^5.0.5",
+    "mongoose": "^5.11.17",
+    "mongoose-lean-virtuals": "^0.7.6",
     "next": "^10.0.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

@@ -6,5 +6,6 @@
   "storageBucket": "",
   "messagingSenderId": "",
   "appId": "",
-  "measurementId": ""
+  "measurementId": "",
+  "FCM_KEY": ""
 }

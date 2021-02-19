@@ -19,4 +19,4 @@ if (process.browser) {
 
 export default firebaseWeb
 
-export const FCM_KEY = ''
+export const FCM_KEY = firebaseConfig.FCM_KEY
