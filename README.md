@@ -6,28 +6,28 @@ Base para aplicações web da Fluido
 
 ```bash
 .
-|-pages                     # module-alias: app-pages
-  |-api                     # module-alias: app-api
-    |-_template.ts          # Aquivo de requisição HTTP Base
-    |-[name].ts             # Aquivo de requisição HTTP Base /api/[name]
-  |-_app.tsx                # No base da aplicação
-  |-_document.tsx           # Definição global do arquivo .html
-  |-index.tsx               # Pagina Home da aplicação
-  |-[name].tsx              # Definição de uma pagina /[name]
-  |-[name]
-    |-index.tsx             # Definição de uma pagina /[name]
-    |-[name2].tsx           # Definição de uma pagina /[name]/[name2]
-|-public                    # Aquivos de acesso públicos
-|-src
-  |-components              # module-alias: app-components
-  |-contexts                # module-alias: app-contexts
-  |-libs
-    |-server                # module-alias: app-libs/server
-    |-client                # module-alias: app-libs/client
-|-styles                    # module-alias: app-styles
-|-firebase-admin-sdk.json   # Chave de configuração do Admin Firebase
-|-firebase-web-sdk.json     # Chave de configuração do Firebase Web
-|-next.config.js            # Arquivo de configuração do NextJS
+|-📁 pages                     # module-alias: app-pages
+  |-📁 api                     # module-alias: app-api
+    |-📄 _template.ts          # Aquivo de requisição HTTP Base
+    |-📄 [name].ts             # Aquivo de requisição HTTP Base /api/[name]
+  |-📄 _app.tsx                # No base da aplicação
+  |-📄 _document.tsx           # Definição global do arquivo .html
+  |-📄 index.tsx               # Pagina Home da aplicação
+  |-📄 [name].tsx              # Definição de uma pagina /[name]
+  |-📁 [name]
+    |📄 -index.tsx             # Definição de uma pagina /[name]
+    |📄 -[name2].tsx           # Definição de uma pagina /[name]/[name2]
+|-📁 public                    # Aquivos de acesso públicos
+|-📁 src
+  |-📁 components              # module-alias: app-components
+  |-📁 contexts                # module-alias: app-contexts
+  |-📁 libs
+    |-📁 server                # module-alias: app-libs/server
+    |-📁 client                # module-alias: app-libs/client
+|-📁 styles                    # module-alias: app-styles
+|-📄 firebase-admin-sdk.json   # Chave de configuração do Admin Firebase
+|-📄 firebase-web-sdk.json     # Chave de configuração do Firebase Web
+|-📄 next.config.js            # Arquivo de configuração do NextJS
 
 ```
 
