@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import firebaseWeb from 'app-libs/client/firebase'
+import firebaseWeb, { FCM_KEY } from 'app-libs/client/firebase'
 import ProfileContext from 'app-contexts/profile-context'
 import { PUBLIC_ROUTE_MAP } from 'app-root/src/components/commons/constants'
 
-export default function ProfileManager({ children }) {
+interface ProfileManagerProps {}
+
+const ProfileManager: React.FunctionComponent<ProfileManagerProps> = ({
+  children,
+}) => {
   const router = useRouter()
 
   // FCM config
-  // const [FCMToken, setFCMToken] = useState('loading')
+  const [FCMToken, setFCMToken] = useState<string>('waiting')
 
   // Profile Provider
   const [profile, setProfile] = useState({
@@ -20,9 +24,9 @@ export default function ProfileManager({ children }) {
   })
 
   useEffect(() => {
-    let metaRef
+    let metaRef: firebaseWeb.database.Reference
 
-    function callback(snapshot) {
+    const callback = (snapshot: firebaseWeb.database.DataSnapshot) => {
       setProfile((p) => ({
         ...p,
         loaded: true,
@@ -71,34 +75,41 @@ export default function ProfileManager({ children }) {
   }, [process.browser, profile.logged, profile.loaded, router.pathname])
 
   // FCM Loader
-  // useEffect(() => {
-  //   if (process.browser && profile.loaded) {
-  //     if (profile.logged) {
-  //       setFCMToken('loading')
-  //       const messaging = firebaseWeb.messaging()
-  //       messaging
-  //         .getToken({ vapidKey: FCM_KEY })
-  //         .then(async (token) => {
-  //           if (token) {
-  //             setFCMToken(token)
-  //           } else {
-  //             setFCMToken('required')
-  //           }
-  //         })
-  //         .catch(
-  //           /** @param {Error} err */
-  //           (err) => {
-  //             if (err.message.includes('permission-blocked')) {
-  //               setFCMToken('required')
-  //             } else {
-  //               console.log(err)
-  //             }
-  //             setFCMToken('error')
-  //           },
-  //         )
-  //     }
-  //   }
-  // }, [process.browser, profile.logged, profile.loaded])
+  useEffect(() => {
+    if (process.browser && FCM_KEY) {
+      setFCMToken('loading')
+      const messaging = firebaseWeb.messaging()
+      messaging
+        .getToken({ vapidKey: FCM_KEY })
+        .then(async (token) => {
+          if (token) {
+            setFCMToken(token)
+          } else {
+            setFCMToken('required')
+          }
+        })
+        .catch((err: Error) => {
+          if (err.message.includes('permission-blocked')) {
+            setFCMToken('required')
+          } else {
+            console.log(err)
+          }
+          setFCMToken('error')
+        })
+    }
+  }, [process.browser, FCM_KEY])
+
+  useEffect(() => {
+    if (
+      process.browser &&
+      profile.logged &&
+      profile.loaded &&
+      FCMToken &&
+      !['error', 'required', 'loading', 'waiting'].includes(FCMToken)
+    ) {
+      firebaseWeb.database().ref(`users/${profile.user.uid}/fcm`).set(FCMToken)
+    }
+  }, [process.browser, FCMToken, profile.logged, profile.loaded])
 
   return (
     <ProfileContext.Provider value={profile}>
@@ -106,3 +117,5 @@ export default function ProfileManager({ children }) {
     </ProfileContext.Provider>
   )
 }
+
+export default ProfileManager
