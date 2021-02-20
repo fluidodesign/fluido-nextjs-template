@@ -1,39 +1,106 @@
 {
-  "Create React function component": {
-    "scope": "javascriptreact,typescriptreact",
-    "prefix": "rcomp",
+  "Fluido - Index Component": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "flic",
     "body": [
-      "import PropTypes from 'prop-types'",
-      "",
-      "const ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi} = ({}) => {",
-      "  return (",
-      "  <div></div>",
-      "  )",
-      "}",
-      "",
-      "${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}.propTypes = {}",
-      "",
-      "export default ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}"
+      "import ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/} from './${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/downcase}/}'",
+      "export default ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}"
     ]
   },
-  "Create React function component with ref": {
+  "Fluido - Component": {
     "scope": "javascriptreact,typescriptreact",
-    "prefix": "rcompr",
+    "prefix": "flc",
     "body": [
-      "import { forwardRef } from 'react'",
-      "import PropTypes from 'prop-types'",
+      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$1}",
       "",
-      "const _${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi} = ({}, ref) => {",
+      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}: React.FunctionComponent<${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props> = () => {",
       "  return (",
-      "  <div ref={ref}></div>",
+      "    <div>$2</div>",
       "  )",
       "}",
       "",
-      "const ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi} = forwardRef(_${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi})",
+      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+    ]
+  },
+  "Fluido - Component with forwardRef": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "flcr",
+    "body": [
+      "import { forwardRef } from 'react'",
       "",
-      "${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}.propTypes = {}",
+      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$1}",
       "",
-      "export default ${TM_FILENAME_BASE/-?([0-9a-z]+)/${1:/capitalize}/gi}"
+      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = forwardRef<any, ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props>(({}, ref) => {",
+      "  return (",
+      "    <div ref={ref}>$2</div>",
+      "  )",
+      "})",
+      "",
+      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+    ]
+  },
+  "Fluido - Styled Component": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "flsc",
+    "body": [
+      "import styled from 'styled-components'",
+      "",
+      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$2}",
+      "",
+      "const Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = styled.${1:div}``",
+      "",
+      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}: React.FunctionComponent<${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props> = () => {",
+      "  return (",
+      "    <Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/}>$3</Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/}>",
+      "  )",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+    ]
+  },
+  "Fluido - Styled Component with forwardRef": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "flscr",
+    "body": [
+      "import { forwardRef } from 'react'",
+      "import styled from 'styled-components'",
+      "",
+      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$2}",
+      "",
+      "const Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = styled.${1:div}``",
+      "",
+      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = forwardRef<any, ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props>(({}, ref) => {",
+      "  return (",
+      "    <Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/} ref={ref}>$3</Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/}>",
+      "  )",
+      "})",
+      "",
+      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+    ]
+  },
+  "Fluido - Page": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "flpg",
+    "body": [
+      "import Head from 'next/head'",
+      "import i18next from 'i18next'",
+      "",
+      "interface ${1:${TM_FILENAME_BASE/.*/${0:/pascalcase}/}}PageProps {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE/.*/${0:/pascalcase}/}}Page: React.FunctionComponent<${1:${TM_FILENAME_BASE/.*/${0:/pascalcase}/}}PageProps> = () => {",
+      "  return (",
+      "    <>",
+      "      <Head>",
+      "        <title>",
+      "          {process.env.PROJECT_NAME} | {i18next.t('${2:${TM_FILENAME_BASE/.*/${0:/camelcase}/}}.title')}",
+      "        </title>",
+      "      </Head>",
+      "      <h1>${3:${TM_FILENAME_BASE/.*/${0:/pascalcase}/}} Page</h1>",
+      "    </>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE/.*/${0:/pascalcase}/}}Page"
     ]
   }
 }

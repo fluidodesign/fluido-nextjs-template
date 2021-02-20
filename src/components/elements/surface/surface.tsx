@@ -1,9 +1,14 @@
 import cx from 'classnames'
 import { motion } from 'framer-motion'
-import { betweenNumbers } from 'app-components/commons/prop-types'
 import styled from 'styled-components'
 
-const StyledDiv = styled(motion.div)`
+interface SurfaceProps {
+  className?: string
+  elevation?: number
+  [key: string]: any
+}
+
+const StyledSurface = styled(motion.div)`
   .surface {
     background-color: var(--surface);
     color: var(--on-surface-high-emphasis);
@@ -13,18 +18,19 @@ const StyledDiv = styled(motion.div)`
   }
 `
 
-const Surface = ({ children, className, elevation = 0, ...props }) => {
+const Surface: React.FunctionComponent<SurfaceProps> = ({
+  children,
+  className,
+  elevation = 0,
+  ...props
+}) => {
   return (
-    <StyledDiv
+    <StyledSurface
       className={cx('surface', className, `elevation-${elevation}`)}
       {...props}>
       {children}
-    </StyledDiv>
+    </StyledSurface>
   )
-}
-
-Surface.propTypes = {
-  elevation: betweenNumbers({ max: 24, min: 0 }),
 }
 
 export default Surface

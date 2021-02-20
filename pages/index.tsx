@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import i18next from 'i18next'
 
-const HomePage = () => {
+interface HomePageProps {}
+
+const HomePage: React.FunctionComponent<HomePageProps> = () => {
   return (
     <>
       <Head>
