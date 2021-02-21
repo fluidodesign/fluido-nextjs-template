@@ -5,7 +5,7 @@ Base para aplicações web da Fluido
 ## Estrutura de arquivos
 
 ```bash
-.
+.                              # module-alias: app-root
 |-📁 pages                     # module-alias: app-pages
   |-📁 api                     # module-alias: app-api
     |-📄 _template.ts          # Aquivo de requisição HTTP Base
@@ -20,7 +20,7 @@ Base para aplicações web da Fluido
 |-📁 public                    # Aquivos de acesso públicos
 |-📁 src
   |-📁 components              # module-alias: app-components
-  |-📁 contexts                # module-alias: app-contexts
+  |-📁 hooks                   # module-alias: app-hooks
   |-📁 libs
     |-📁 server                # module-alias: app-libs/server
     |-📁 client                # module-alias: app-libs/client
@@ -45,9 +45,9 @@ Local dos micro serviços da aplicação
 
 Local dos componentes visuais
 
-### app-contexts
+### app-hooks
 
-Local dos ReactContexts
+Local dos [HookStates](https://hookstate.js.org/) globais
 
 ### app-libs/server
 
