@@ -4,7 +4,7 @@
     "paths": {
       "app-root/*": ["*"],
       "app-components/*": ["src/components/*"],
-      "app-contexts/*": ["src/contexts/*"],
+      "app-hooks/*": ["src/hooks/*"],
       "app-libs/client/*": ["src/libs/client/*"],
       "app-libs/server/*": ["src/libs/server/*"],
       "app-styles/*": ["styles/*"],

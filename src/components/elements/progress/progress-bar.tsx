@@ -1,6 +1,13 @@
+import { number } from 'prop-types'
 import styled from 'styled-components'
 
-const StyledDiv = styled.div`
+interface ProgressBarProps {
+  max?: number
+  value?: number
+  buffer?: number
+}
+
+const StyledProgressBar = styled.div`
   .progress {
     min-width: 10rem;
     height: 4px;
@@ -61,7 +68,11 @@ const StyledDiv = styled.div`
   }
 `
 
-const ProgressBar = ({ max = 100, value = 0, buffer }) => {
+const ProgressBar: React.FunctionComponent<ProgressBarProps> = ({
+  max = 100,
+  value = 0,
+  buffer,
+}) => {
   let newValue = value / max
   buffer = (buffer || max) / max
 
@@ -69,7 +80,7 @@ const ProgressBar = ({ max = 100, value = 0, buffer }) => {
   buffer *= 100
 
   return (
-    <StyledDiv
+    <StyledProgressBar
       role='progressbar'
       aria-valuemax={max}
       aria-valuenow={value}
@@ -85,7 +96,7 @@ const ProgressBar = ({ max = 100, value = 0, buffer }) => {
       <div className='value'></div>
       <div className='indeterminate-1'></div>
       <div className='indeterminate-2'></div>
-    </StyledDiv>
+    </StyledProgressBar>
   )
 }
 

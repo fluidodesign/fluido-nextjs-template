@@ -1,37 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useState } from '@hookstate/core'
 import { useRouter } from 'next/router'
 import firebaseWeb, { FCM_KEY } from 'app-libs/client/firebase'
-import ProfileContext from 'app-contexts/profile-context'
 import { PUBLIC_ROUTE_MAP } from 'app-root/src/components/commons/constants'
+import ProfileState, { ProfileFCMToken } from 'app-root/src/hooks/profile'
 
 interface ProfileManagerProps {}
 
-const ProfileManager: React.FunctionComponent<ProfileManagerProps> = ({
-  children,
-}) => {
+const ProfileManager: React.FunctionComponent<ProfileManagerProps> = () => {
   const router = useRouter()
 
   // FCM config
-  const [FCMToken, setFCMToken] = useState<string>('waiting')
+  const FCMToken = useState(ProfileFCMToken)
 
   // Profile Provider
-  const [profile, setProfile] = useState({
-    loaded: false,
-    logged: false,
-    user: null,
-    userToken: null,
-    claims: null,
-  })
+  const profile = useState(ProfileState)
 
   useEffect(() => {
     let metaRef: firebaseWeb.database.Reference
 
     const callback = (snapshot: firebaseWeb.database.DataSnapshot) => {
-      setProfile((p) => ({
-        ...p,
+      profile.merge({
         loaded: true,
         claims: snapshot.val() || {},
-      }))
+      })
     }
     return firebaseWeb.auth().onAuthStateChanged((user) => {
       if (metaRef) {
@@ -39,28 +31,25 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = ({
         metaRef = null
       }
 
-      setProfile((p) => ({
-        ...p,
+      profile.merge({
         logged: !!user,
         user,
-      }))
+      })
 
       if (user) {
         user.getIdToken(true).then((token) => {
-          setProfile((p) => ({
-            ...p,
+          profile.merge({
             userToken: token,
-          }))
+          })
         })
 
         metaRef = firebaseWeb.database().ref(`users/${user.uid}/claims`)
         metaRef.on('value', callback)
       } else {
-        setProfile((p) => ({
-          ...p,
+        profile.merge({
           loaded: true,
           userToken: null,
-        }))
+        })
       }
     })
   }, [process.browser])
@@ -77,24 +66,24 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = ({
   // FCM Loader
   useEffect(() => {
     if (process.browser && FCM_KEY) {
-      setFCMToken('loading')
+      FCMToken.set('loading')
       const messaging = firebaseWeb.messaging()
       messaging
         .getToken({ vapidKey: FCM_KEY })
         .then(async (token) => {
           if (token) {
-            setFCMToken(token)
+            FCMToken.set(token)
           } else {
-            setFCMToken('required')
+            FCMToken.set('required')
           }
         })
         .catch((err: Error) => {
           if (err.message.includes('permission-blocked')) {
-            setFCMToken('required')
+            FCMToken.set('required')
           } else {
             console.log(err)
           }
-          setFCMToken('error')
+          FCMToken.set('error')
         })
     }
   }, [process.browser, FCM_KEY])
@@ -104,18 +93,14 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = ({
       process.browser &&
       profile.logged &&
       profile.loaded &&
-      FCMToken &&
-      !['error', 'required', 'loading', 'waiting'].includes(FCMToken)
+      FCMToken.get() &&
+      !['error', 'required', 'loading', 'waiting'].includes(FCMToken.get())
     ) {
       firebaseWeb.database().ref(`users/${profile.user.uid}/fcm`).set(FCMToken)
     }
   }, [process.browser, FCMToken, profile.logged, profile.loaded])
 
-  return (
-    <ProfileContext.Provider value={profile}>
-      {children}
-    </ProfileContext.Provider>
-  )
+  return <></>
 }
 
 export default ProfileManager

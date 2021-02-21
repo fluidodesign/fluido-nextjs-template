@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
-import PropTypes from 'prop-types'
 
-const ThemeSwitch = ({ theme = '' }) => {
+interface ThemeSwitchProps {
+  theme?: 'light' | 'dark'
+}
+
+const ThemeSwitch: React.FunctionComponent<ThemeSwitchProps> = ({ theme }) => {
   useEffect(() => {
     if (process.browser) {
       const html = document.documentElement
@@ -23,10 +26,6 @@ const ThemeSwitch = ({ theme = '' }) => {
   }, [process.browser, theme])
 
   return <></>
-}
-
-ThemeSwitch.propTypes = {
-  theme: PropTypes.oneOf(['', 'light', 'dark']),
 }
 
 export default ThemeSwitch

@@ -3,6 +3,22 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
+interface RippleProps {
+  className?: string
+  anchor: any
+  toCenter?: boolean
+  toIcon?: boolean
+}
+
+type RippleState =
+  | 'hidden'
+  | 'hidden2'
+  | 'ripple'
+  | 'ripple2'
+  | 'long'
+  | 'focus'
+  | 'focus2'
+
 const rippleVariants = {
   hidden: {
     opacity: 0.24,
@@ -58,15 +74,6 @@ const rippleVariants = {
   },
 }
 
-type RippleState =
-  | 'hidden'
-  | 'hidden2'
-  | 'ripple'
-  | 'ripple2'
-  | 'long'
-  | 'focus'
-  | 'focus2'
-
 const StyledNode = styled.div`
   .ripple {
     position: absolute;
@@ -84,7 +91,12 @@ const StyledNode = styled.div`
   }
 `
 
-const Ripple = ({ className, anchor, toCenter = false, toIcon = false }) => {
+const Ripple: React.FunctionComponent<RippleProps> = ({
+  className,
+  anchor,
+  toCenter = false,
+  toIcon = false,
+}) => {
   const [state, setState] = useState<RippleState>('hidden')
   const [pos, setPos] = useState([0, 0])
   const [size, setSize] = useState(100)
