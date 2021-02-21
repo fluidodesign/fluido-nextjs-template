@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
@@ -74,25 +73,21 @@ const rippleVariants = {
   },
 }
 
-const StyledNode = styled.div`
-  .ripple {
+const StyledRipple = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  & > * {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    background-color: transparent;
-    & > {
-      position: absolute;
-      background-color: currentColor;
-      border-radius: 99999999px;
-    }
+    background-color: currentColor;
+    border-radius: 99999999px;
   }
 `
 
 const Ripple: React.FunctionComponent<RippleProps> = ({
-  className,
   anchor,
   toCenter = false,
   toIcon = false,
@@ -172,15 +167,17 @@ const Ripple: React.FunctionComponent<RippleProps> = ({
         }
       })
     }
-    /** @param {KeyboardEvent} ev */
-    function onKeyboardDown(ev) {
+    function onKeyboardDown(ev: KeyboardEvent) {
       if (ev.code === 'Enter' || ev.code === 'Space') {
         onRipple(ev)
       }
     }
-    /** @param {KeyboardEvent | MouseEvent} ev */
-    function releaseRipple(ev) {
-      if ((ev.type === 'keyup' && ev.code === 'Enter') || ev.code === 'Space') {
+    function releaseRipple(ev: KeyboardEvent | MouseEvent) {
+      if (
+        ev instanceof KeyboardEvent &&
+        ev.type === 'keyup' &&
+        (ev.code === 'Enter' || ev.code === 'Space')
+      ) {
         setState((s: RippleState) => {
           switch (s) {
             case 'long':
@@ -192,7 +189,7 @@ const Ripple: React.FunctionComponent<RippleProps> = ({
               return 'hidden2'
           }
         })
-      } else if (ev.type === 'mouseup') {
+      } else if (ev instanceof MouseEvent && ev.type === 'mouseup') {
         setState((s) => {
           switch (s) {
             case 'long':
@@ -226,7 +223,7 @@ const Ripple: React.FunctionComponent<RippleProps> = ({
   }, [anchor])
 
   return (
-    <StyledNode ref={ref} className={classNames('ripple', className)}>
+    <StyledRipple ref={ref}>
       <AnimatePresence>
         <motion.div
           variants={rippleVariants}
@@ -246,7 +243,7 @@ const Ripple: React.FunctionComponent<RippleProps> = ({
           }}
         />
       </AnimatePresence>
-    </StyledNode>
+    </StyledRipple>
   )
 }
 

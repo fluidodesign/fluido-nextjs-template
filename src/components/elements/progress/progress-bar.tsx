@@ -8,15 +8,13 @@ interface ProgressBarProps {
 }
 
 const StyledProgressBar = styled.div`
-  .progress {
-    min-width: 10rem;
-    height: 4px;
-    position: relative;
-    --progress-color: var(--primary);
-    transition: all 250ms linear;
-  }
+  min-width: 10rem;
+  height: 4px;
+  position: relative;
+  --progress-color: var(--primary);
+  transition: all 250ms linear;
 
-  .progress > * {
+  & > * {
     position: absolute;
     top: 0;
     left: 0;
@@ -25,7 +23,7 @@ const StyledProgressBar = styled.div`
     transition: all 250ms linear;
   }
 
-  .progress::after {
+  &::after {
     content: '';
     position: absolute;
     top: 0;
@@ -90,8 +88,7 @@ const ProgressBar: React.FunctionComponent<ProgressBarProps> = ({
           '--data-value': newValue + '%',
           '--data-buffer': buffer + '%',
         } as React.CSSProperties
-      }
-      className='progress'>
+      }>
       <div className='buffer'></div>
       <div className='value'></div>
       <div className='indeterminate-1'></div>
