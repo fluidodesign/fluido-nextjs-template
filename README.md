@@ -28,7 +28,6 @@ Base para aplicações web da Fluido
 |-📄 firebase-admin-sdk.json   # Chave de configuração do Admin Firebase
 |-📄 firebase-web-sdk.json     # Chave de configuração do Firebase Web
 |-📄 next.config.js            # Arquivo de configuração do NextJS
-
 ```
 
 ## Descrição dos modulos
