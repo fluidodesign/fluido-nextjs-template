@@ -1,12 +1,30 @@
 import cookie from 'cookie'
 import cors from 'cors'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { RequestHandler } from 'express-serve-static-core'
 import firebaseAdmin from './firebase-admin-init'
-import {
-  AppHandler,
-  AppRequest,
-  AppResponse,
-  AppRouterNext,
-} from 'app-root/next-env'
+
+interface AppResponse<T = any> extends Express.Response, NextApiResponse<T> {
+  cookie: (key: string, value: any, opt?: object) => void
+}
+
+interface AppRequest extends Express.Request, NextApiRequest {
+  claimsRef: any
+  userRef: any
+  user: firebaseAdmin.auth.DecodedIdToken
+  automation: boolean
+  claims: {}
+}
+
+type AppRouterNext = (error?: Error) => void
+
+type CustomHandler = (
+  request: AppRequest,
+  response: AppResponse,
+  next?: AppRouterNext,
+) => void | any | Promise<void> | Promise<any>
+
+type AppHandler = CustomHandler | RequestHandler
 
 export const MiddlewareWrapper = (...routes: AppHandler[]) => {
   return async (request: AppRequest, response: AppResponse) => {
