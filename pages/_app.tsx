@@ -1,15 +1,15 @@
-import ThemeSwitch from 'app-components/effects/theme'
+import { AppProps } from 'next/app'
 
-import 'app-libs/client/i18n'
+import i18n from 'app-libs/client/i18n'
+import 'app-hooks/theme'
 import 'app-styles/main.scss'
 
-const MyApp = ({ Component, pageProps }) => {
-  return (
-    <>
-      <ThemeSwitch />
-      <Component {...pageProps} />
-    </>
-  )
+const MyApp = ({ Component, pageProps, router }: AppProps) => {
+  if (router.locale) {
+    i18n.changeLanguage(router.locale)
+  }
+
+  return <Component {...pageProps} />
 }
 
 export default MyApp

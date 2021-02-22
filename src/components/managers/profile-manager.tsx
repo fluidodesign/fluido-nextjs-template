@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useState } from '@hookstate/core'
 import { useRouter } from 'next/router'
 import firebaseWeb, { FCM_KEY } from 'app-libs/client/firebase'
-import { PUBLIC_ROUTE_MAP } from 'app-root/src/components/commons/constants'
-import ProfileState, { ProfileFCMToken } from 'app-root/src/hooks/profile'
+import { PUBLIC_ROUTE_MAP } from 'app-components/commons/constants'
+import ProfileState, { ProfileFCMToken } from 'app-hooks/profile'
 
 interface ProfileManagerProps {}
 

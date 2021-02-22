@@ -4,11 +4,13 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { RequestHandler } from 'express-serve-static-core'
 import firebaseAdmin from './firebase-admin-init'
 
-interface AppResponse<T = any> extends Express.Response, NextApiResponse<T> {
+export interface AppResponse<T = any>
+  extends Express.Response,
+    NextApiResponse<T> {
   cookie: (key: string, value: any, opt?: object) => void
 }
 
-interface AppRequest extends Express.Request, NextApiRequest {
+export interface AppRequest extends Express.Request, NextApiRequest {
   claimsRef: any
   userRef: any
   user: firebaseAdmin.auth.DecodedIdToken
@@ -16,17 +18,17 @@ interface AppRequest extends Express.Request, NextApiRequest {
   claims: {}
 }
 
-type AppRouterNext = (error?: Error) => void
+export type AppNext = (error?: Error) => void
 
-type CustomHandler = (
+export type AppHandler = (
   request: AppRequest,
   response: AppResponse,
-  next?: AppRouterNext,
+  next?: AppNext,
 ) => void | any | Promise<void> | Promise<any>
 
-type AppHandler = CustomHandler | RequestHandler
+type AppFullHandler = AppHandler | RequestHandler
 
-export const MiddlewareWrapper = (...routes: AppHandler[]) => {
+export const MiddlewareWrapper = (...routes: AppFullHandler[]) => {
   return async (request: AppRequest, response: AppResponse) => {
     const setCookie = (key: string, value: any, opt: object = {}) => {
       const cookieSerialize = cookie.serialize(key, value, {
@@ -57,10 +59,10 @@ export const MiddlewareWrapper = (...routes: AppHandler[]) => {
   }
 }
 
-export const routeVerifyToken: AppHandler = (
+export const routeVerifyToken: AppFullHandler = (
   request: AppRequest,
   response: AppResponse,
-  next?: AppRouterNext,
+  next?: AppNext,
 ) => {
   let token: string
   request.claims = {}
@@ -113,12 +115,12 @@ export const routeVerifyToken: AppHandler = (
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export const filterMethod = (method: Method = 'GET') => {
-  return ((req: AppRequest, res: AppResponse, next?: AppRouterNext) => {
+  return ((req: AppRequest, res: AppResponse, next?: AppNext) => {
     if (req.method !== method) {
       res.setHeader('Allow', [method])
       res.status(405).json({ message: 'method-not-allowed' })
     } else {
       next()
     }
-  }) as AppHandler
+  }) as AppFullHandler
 }

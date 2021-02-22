@@ -5,7 +5,7 @@ import 'firebase/messaging'
 import 'firebase/analytics'
 
 // Your web app's Firebase configuration
-import firebaseConfig from 'app-root/firebase-web-sdk.json'
+import firebaseConfig from 'app-config/firebase-web-sdk.json'
 
 // Initialize Firebase
 if (!firebaseWeb.apps || !firebaseWeb.apps.length) {

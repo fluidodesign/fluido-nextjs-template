@@ -4,8 +4,9 @@ import {
   MiddlewareWrapper,
   filterMethod,
   routeVerifyToken,
+  AppRequest,
+  AppResponse,
 } from 'app-libs/server/api-utils'
-import { AppRequest, AppResponse } from 'app-root/next-env'
 
 const bodySchema: JSONSchema7 = {
   type: 'object',

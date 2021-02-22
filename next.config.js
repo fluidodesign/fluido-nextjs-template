@@ -1,8 +1,7 @@
+const i18n = require('./config/locale.json')
+
 module.exports = {
-  i18n: {
-    locales: ['pt-BR', 'en-US'],
-    defaultLocale: 'pt-BR',
-  },
+  i18n,
   env: {
     PROJECT_NAME: 'My Project',
     TZ: 'America/Recife',

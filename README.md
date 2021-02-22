@@ -5,7 +5,11 @@ Base para aplicações web da Fluido
 ## Estrutura de arquivos
 
 ```bash
-.                              # module-alias: app-root
+.
+|-📁 config                    # module-alias: app-config
+  |-📄 firebase-admin-sdk.json # Chave de configuração do Admin Firebase
+  |-📄 firebase-web-sdk.json   # Chave de configuração do Firebase Web
+  |-📄 locale.json             # Arquivo de configuração de multilinguagem
 |-📁 pages                     # module-alias: app-pages
   |-📁 api                     # module-alias: app-api
     |-📄 _template.ts          # Aquivo de requisição HTTP Base
@@ -25,12 +29,14 @@ Base para aplicações web da Fluido
     |-📁 server                # module-alias: app-libs/server
     |-📁 client                # module-alias: app-libs/client
 |-📁 styles                    # module-alias: app-styles
-|-📄 firebase-admin-sdk.json   # Chave de configuração do Admin Firebase
-|-📄 firebase-web-sdk.json     # Chave de configuração do Firebase Web
 |-📄 next.config.js            # Arquivo de configuração do NextJS
 ```
 
 ## Descrição dos modulos
+
+### app-config
+
+Local de arquivos de configurações
 
 ### app-pages
 

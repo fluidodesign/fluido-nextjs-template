@@ -1,33 +1,27 @@
+import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import i18next from 'i18next'
-import { useRef } from 'react'
-import Ripple from 'app-components/effects/ripple'
+import { useTranslation } from 'react-i18next'
 
 interface HomePageProps {}
 
-const HomePage: React.FunctionComponent<HomePageProps> = () => {
-  const ref = useRef()
+const HomePage: NextPage<HomePageProps> = () => {
+  const { t } = useTranslation()
 
   return (
     <>
       <Head>
-        <title>
-          {process.env.PROJECT_NAME} | {i18next.t('home.title')}
-        </title>
+        <title>{process.env.PROJECT_NAME}</title>
       </Head>
-      <h1>Home Page</h1>
-      <div
-        ref={ref}
-        style={{
-          width: 200,
-          height: 200,
-          position: 'absolute',
-          backgroundColor: 'red',
-        }}>
-        <Ripple anchor={ref} />
-      </div>
+      <h1>{t('home.title')} Page</h1>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({}) => {
+  return {
+    props: {},
+    revalidate: 1,
+  }
 }
 
 export default HomePage

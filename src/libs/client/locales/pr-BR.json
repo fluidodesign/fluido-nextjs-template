@@ -1,0 +1,36 @@
+{
+  "global": {
+    "welcome": "Olá, {{name}}"
+  },
+  "home": {
+    "title": "Inicial"
+  },
+  "label": {
+    "email": "Email",
+    "password": "Senha",
+    "name": "Nome",
+    "passwordConfirmation": "Confirmação de senha",
+    "quantity": "Quantidade"
+  },
+  "button": {
+    "enter": "Entrar",
+    "exit": "Sair",
+    "ok": "OK",
+    "cancel": "Cancelar",
+    "yes": "Sim",
+    "no": "Não",
+    "agree": "Concordo",
+    "decline": "Discordo",
+    "save": "Salvar",
+    "delete": "Deletar",
+    "register": "Registrar",
+    "next": "Proximo",
+    "back": "Voltar",
+    "backToEnter": "Voltar para login",
+    "forgotten": "Esqueci minha senha",
+    "newAccount": "Se cadastre agora",
+    "sendRecover": "Recuperar",
+    "reject": "Rejeitar",
+    "verify": "Verificar"
+  }
+}

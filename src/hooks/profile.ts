@@ -1,4 +1,4 @@
-import { createState, State } from '@hookstate/core'
+import { createState } from '@hookstate/core'
 
 import firebaseWeb from '../libs/client/firebase'
 

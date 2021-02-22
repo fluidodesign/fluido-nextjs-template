@@ -1,38 +1,36 @@
 {
-  "main": {
-    "global": {
-      "welcome": "Hello, {{name}}"
-    },
-    "home": {
-      "title": "Home"
-    },
-    "label": {
-      "email": "Email",
-      "password": "Password",
-      "name": "Name",
-      "passwordConfirmation": "Password confirmation",
-      "quantity": "Quantity"
-    },
-    "button": {
-      "enter": "Enter",
-      "exit": "Exit",
-      "ok": "OK",
-      "cancel": "Cancel",
-      "yes": "Yes",
-      "no": "No",
-      "agree": "Agree",
-      "decline": "Decline",
-      "save": "save",
-      "delete": "Delete",
-      "register": "Register",
-      "next": "next",
-      "back": "Back",
-      "backToEnter": "Back to login",
-      "forgotten": "Forgotten password",
-      "newAccount": "Create your account",
-      "sendRecover": "Recover your password",
-      "reject": "Reject",
-      "verify": "Verify"
-    }
+  "global": {
+    "welcome": "Hello, {{name}}"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "label": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "passwordConfirmation": "Password confirmation",
+    "quantity": "Quantity"
+  },
+  "button": {
+    "enter": "Enter",
+    "exit": "Exit",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "agree": "Agree",
+    "decline": "Decline",
+    "save": "save",
+    "delete": "Delete",
+    "register": "Register",
+    "next": "next",
+    "back": "Back",
+    "backToEnter": "Back to login",
+    "forgotten": "Forgotten password",
+    "newAccount": "Create your account",
+    "sendRecover": "Recover your password",
+    "reject": "Reject",
+    "verify": "Verify"
   }
 }

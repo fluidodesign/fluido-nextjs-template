@@ -1,5 +1,5 @@
 import firebaseAdmin, { ServiceAccount } from 'firebase-admin'
-import credentials from 'app-root/firebase-admin-sdk.json'
+import credentials from 'app-config/firebase-admin-sdk.json'
 
 if (!firebaseAdmin.apps || !firebaseAdmin.apps.length) {
   firebaseAdmin.initializeApp({

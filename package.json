@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookstate/core": "^3.0.6",
+    "@hookstate/persistence": "^3.0.0",
     "@popperjs/core": "^2.7.0",
     "babel-plugin-styled-components": "^1.12.0",
     "classnames": "^2.2.6",
@@ -23,8 +24,7 @@
     "firebase": "^8.2.7",
     "firebase-admin": "^9.5.0",
     "framer-motion": "^3.3.0",
-    "i18next": "^19.8.8",
-    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next": "^19.8.9",
     "inputmask": "^5.0.5",
     "mongoose": "^5.11.17",
     "mongoose-lean-virtuals": "^0.7.6",
