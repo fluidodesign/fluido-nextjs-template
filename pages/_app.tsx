@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app'
 
 import i18n from 'app-libs/client/i18n'
-import 'app-hooks/theme'
+import 'app-hooks/effects/theme'
 import 'app-styles/main.scss'
 
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
