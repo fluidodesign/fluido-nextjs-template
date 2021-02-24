@@ -61,7 +61,12 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = () => {
         router.replace('/login')
       }
     }
-  }, [process.browser, profile.logged, profile.loaded, router.pathname])
+  }, [
+    process.browser,
+    profile.logged.value,
+    profile.loaded.value,
+    router.pathname,
+  ])
 
   // FCM Loader
   useEffect(() => {
@@ -98,7 +103,12 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = () => {
     ) {
       firebaseWeb.database().ref(`users/${profile.user.uid}/fcm`).set(FCMToken)
     }
-  }, [process.browser, FCMToken, profile.logged, profile.loaded])
+  }, [
+    process.browser,
+    FCMToken.value,
+    profile.logged.value,
+    profile.loaded.value,
+  ])
 
   return <></>
 }
