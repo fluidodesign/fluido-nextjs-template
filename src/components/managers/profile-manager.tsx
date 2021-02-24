@@ -56,8 +56,11 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = () => {
 
   // Page blocker
   useEffect(() => {
-    if (process.browser && profile.loaded) {
-      if (!profile.logged && !PUBLIC_ROUTE_MAP.includes(router.pathname)) {
+    if (process.browser && profile.loaded.value) {
+      if (
+        !profile.logged.value &&
+        !PUBLIC_ROUTE_MAP.includes(router.pathname)
+      ) {
         router.replace('/login')
       }
     }
@@ -96,12 +99,15 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = () => {
   useEffect(() => {
     if (
       process.browser &&
-      profile.logged &&
-      profile.loaded &&
-      FCMToken.get() &&
-      !['error', 'required', 'loading', 'waiting'].includes(FCMToken.get())
+      profile.logged.value &&
+      profile.loaded.value &&
+      FCMToken.value &&
+      !['error', 'required', 'loading', 'waiting'].includes(FCMToken.value)
     ) {
-      firebaseWeb.database().ref(`users/${profile.user.uid}/fcm`).set(FCMToken)
+      firebaseWeb
+        .database()
+        .ref(`users/${profile.user.value.uid}/fcm`)
+        .set(FCMToken.value)
     }
   }, [
     process.browser,
