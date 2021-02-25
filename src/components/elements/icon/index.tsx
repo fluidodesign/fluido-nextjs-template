@@ -1,9 +1,8 @@
-import {} from 'react-icons/fa'
+import { IconBaseProps } from 'react-icons'
 import { MdHome } from 'react-icons/md'
 
-interface IconProps {
+interface IconProps extends IconBaseProps {
   icon: string
-  [key: string]: any
 }
 
 const iconList = {

@@ -1,25 +1,17 @@
 {
-  "Fluido - Index Component": {
-    "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": "flic",
-    "body": [
-      "import ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/} from './${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/downcase}/}'",
-      "export default ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}"
-    ]
-  },
   "Fluido - Component": {
     "scope": "javascriptreact,typescriptreact",
     "prefix": "flc",
     "body": [
-      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$1}",
+      "interface ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props {$1}",
       "",
-      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}: React.FunctionComponent<${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props> = () => {",
+      "const ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}: React.FunctionComponent<${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props> = () => {",
       "  return (",
       "    <div>$2</div>",
       "  )",
       "}",
       "",
-      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+      "export default ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}"
     ]
   },
   "Fluido - Component with forwardRef": {
@@ -28,15 +20,15 @@
     "body": [
       "import { forwardRef } from 'react'",
       "",
-      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$1}",
+      "interface ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props {$1}",
       "",
-      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = forwardRef<any, ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props>(({}, ref) => {",
+      "const ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/} = forwardRef<any, ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props>(({}, ref) => {",
       "  return (",
       "    <div ref={ref}>$2</div>",
       "  )",
       "})",
       "",
-      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+      "export default ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}"
     ]
   },
   "Fluido - Styled Component": {
@@ -45,17 +37,17 @@
     "body": [
       "import styled from 'styled-components'",
       "",
-      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$2}",
+      "interface ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props {$2}",
       "",
-      "const Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = styled.${1:div}``",
+      "const Styled${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/} = styled.${1:div}``",
       "",
-      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}: React.FunctionComponent<${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props> = () => {",
+      "const ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}: React.FunctionComponent<${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props> = () => {",
       "  return (",
-      "    <Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/}>$3</Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/}>",
+      "    <Styled${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}>$3</Styled${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}>",
       "  )",
       "}",
       "",
-      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+      "export default ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}"
     ]
   },
   "Fluido - Styled Component with forwardRef": {
@@ -65,17 +57,17 @@
       "import { forwardRef } from 'react'",
       "import styled from 'styled-components'",
       "",
-      "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {$2}",
+      "interface ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props {$2}",
       "",
-      "const Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = styled.${1:div}``",
+      "const Styled${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/} = styled.${1:div}``",
       "",
-      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = forwardRef<any, ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props>(({}, ref) => {",
+      "const ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/} = forwardRef<any, ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}Props>(({}, ref) => {",
       "  return (",
-      "    <Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/} ref={ref}>$3</Styled${TM_FILENAME_BASE/.*/${0:/pascalcase}/}>",
+      "    <Styled${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/} ref={ref}>$3</Styled${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}>",
       "  )",
       "})",
       "",
-      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
+      "export default ${TM_DIRECTORY/^.+[\\\\\\/](.*)$/${1:/pascalcase}/}"
     ]
   },
   "Fluido - Page": {
@@ -145,15 +137,17 @@
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": "flhk",
     "body": [
-      "import { createState } from '@hookstate/core'",
+      "import { createState, useState } from '@hookstate/core'",
       "",
       "interface ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props {",
-      "  ${1:[key: string]: any}",
+      "  ${1:[key: string]: unknown}",
       "}",
       "",
-      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}State = createState<${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props>($2)",
+      "const ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}State = createState<${TM_FILENAME_BASE/.*/${0:/pascalcase}/}Props>(${2:null})",
       "",
-      "export default ${TM_FILENAME_BASE/.*/${0:/pascalcase}/}State"
+      "const use${TM_FILENAME_BASE/.*/${0:/pascalcase}/} = () => useState(${TM_FILENAME_BASE/.*/${0:/pascalcase}/}State)",
+      "",
+      "export default use${TM_FILENAME_BASE/.*/${0:/pascalcase}/}"
     ]
   }
 }
