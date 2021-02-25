@@ -1,4 +1,4 @@
-import { createState } from '@hookstate/core'
+import { createState, useState } from '@hookstate/core'
 
 import firebaseWeb from '../libs/client/firebase'
 
@@ -18,7 +18,9 @@ const ProfileState = createState<ProfileProps>({
   claims: [],
 })
 
-export default ProfileState
+const useProfile = () => useState(ProfileState)
+
+export default useProfile
 
 type ProfileFCMTokenType = 'waiting' | 'loading' | 'error' | 'required' | string
 

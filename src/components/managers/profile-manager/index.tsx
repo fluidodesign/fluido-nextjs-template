@@ -3,7 +3,7 @@ import { useState } from '@hookstate/core'
 import { useRouter } from 'next/router'
 import firebaseWeb, { FCM_KEY } from 'app-libs/client/firebase'
 import { PUBLIC_ROUTE_MAP } from 'app-components/commons/constants'
-import ProfileState, { ProfileFCMToken } from 'app-hooks/profile'
+import useProfile, { ProfileFCMToken } from 'app-hooks/profile'
 
 interface ProfileManagerProps {}
 
@@ -14,7 +14,7 @@ const ProfileManager: React.FunctionComponent<ProfileManagerProps> = () => {
   const FCMToken = useState(ProfileFCMToken)
 
   // Profile Provider
-  const profile = useState(ProfileState)
+  const profile = useProfile()
 
   useEffect(() => {
     let metaRef: firebaseWeb.database.Reference
