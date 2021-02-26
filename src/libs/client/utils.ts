@@ -29,3 +29,19 @@ export const getStaticFetch = (
 export const getStaticInternal = (name: string, fn: () => any) => {
   return () => ({ [name]: fn() })
 }
+
+export const promiseDelay = (time: number) => {
+  return new Promise((res) => {
+    setTimeout(res, time)
+  })
+}
+
+export const simplifyId = (id: string) => {
+  return (
+    '#' +
+    id
+      .substring(id.length - 6)
+      .toUpperCase()
+      .padStart(6, '0')
+  )
+}
