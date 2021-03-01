@@ -2,7 +2,7 @@ import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import localeConfig from 'app-config/locale.json'
 
-import ptBR from './locales/pr-BR.json'
+import ptBR from './locales/pt-BR.json'
 import en from './locales/en.json'
 
 i18next.use(initReactI18next).init({
