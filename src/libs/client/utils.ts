@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { fetchAPI } from './api-fetch'
 
 export const joinStaticProps = (...fns: [() => any | any]) => {
@@ -44,4 +45,33 @@ export const simplifyId = (id: string) => {
       .toUpperCase()
       .padStart(6, '0')
   )
+}
+
+export const useMediaQuery = (query: string) => {
+  const [val, setVal] = useState<boolean>(false)
+
+  useEffect(() => {
+    let media: MediaQueryList
+
+    const handler = (ev: MediaQueryListEvent) => {
+      setVal(ev.matches)
+    }
+
+    if (process.browser) {
+      media = window.matchMedia(query)
+      if (media.matches !== val) {
+        setVal(media.matches)
+      }
+
+      media.addEventListener('change', handler)
+    }
+    return () => {
+      if (media) {
+        media.removeEventListener('change', handler)
+        media = null
+      }
+    }
+  }, [process.browser, query])
+
+  return val
 }
