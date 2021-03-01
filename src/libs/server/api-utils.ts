@@ -15,7 +15,7 @@ export interface AppRequest extends Express.Request, NextApiRequest {
   userRef: any
   user: firebaseAdmin.auth.DecodedIdToken
   automation: boolean
-  claims: {}
+  claims: FreeObject
 }
 
 export type AppNext = (error?: Error) => void
