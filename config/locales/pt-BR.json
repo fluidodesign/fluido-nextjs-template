@@ -2,8 +2,8 @@
   "global": {
     "welcome": "Olá, {{name}}"
   },
-  "home": {
-    "title": "Inicial"
+  "page": {
+    "home": "Inicial"
   },
   "label": {
     "email": "Email",

@@ -4,12 +4,12 @@
     "paths": {
       "app-components/*": ["src/components/*"],
       "app-hooks/*": ["src/hooks/*"],
-      "app-libs/client/*": ["src/libs/client/*"],
-      "app-libs/server/*": ["src/libs/server/*"],
+      "app-client/*": ["src/client/*"],
+      "app-server/*": ["src/server/*"],
       "app-config/*": ["config/*"],
       "app-styles/*": ["styles/*"],
-      "app-pages/*": ["pages/*"],
-      "app-api/*": ["pages/api/*"]
+      "app-pages/*": ["src/pages/*"],
+      "app-api/*": ["src/pages/api/*"]
     },
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],

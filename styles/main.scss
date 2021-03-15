@@ -1,9 +1,2 @@
-@use './colors-light';
-@use './colors-dark';
-@use './global';
-@use './material-typography';
-@use './material-elevation';
-
-// Seu tema aqui. A ordem é importante
-@use './custom-theme';
-@use './material-baseline';
+@use './typography';
+@use './theme';
