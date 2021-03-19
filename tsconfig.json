@@ -7,7 +7,7 @@
       "app-client/*": ["src/client/*"],
       "app-server/*": ["src/server/*"],
       "app-config/*": ["config/*"],
-      "app-styles/*": ["styles/*"],
+      "app-styles/*": ["src/styles/*"],
       "app-pages/*": ["src/pages/*"],
       "app-api/*": ["src/pages/api/*"]
     },

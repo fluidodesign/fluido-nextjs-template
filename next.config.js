@@ -6,5 +6,7 @@ module.exports = {
     PROJECT_NAME: 'My Project',
     TZ: 'America/Recife',
     AUTOMATION_KEYS: 'AAA; BBB',
+    DATABASE_URL: 'mongodb://localhost',
+    DATABASE_NAME: 'fluido-db-template',
   },
 }

@@ -1,11 +1,13 @@
-import { createState, useState } from '@hookstate/core'
+import { createContext, useContext } from 'react'
 
 interface PageProps {
   [key: string]: any
 }
 
-export const PageState = createState<PageProps>({})
+const PageContext = createContext<PageProps>({})
 
-const usePage = () => useState<PageProps>(PageState)
+export const PageProvider = PageContext.Provider
+
+const usePage = () => useContext<PageProps>(PageContext)
 
 export default usePage

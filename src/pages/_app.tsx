@@ -1,16 +1,14 @@
-import { AppProps } from 'next/app'
+import '@fluido/react-components/dist/styles/elevation.scss'
+import '@fluido/react-components/dist/styles/material.scss'
 import { useTheme } from '@fluido/react-effects'
 import { loadI18Next } from '@fluido/react-utils'
-import { PageState } from 'app-hooks/page'
-
 import locale from 'app-config/locale.json'
 import en from 'app-config/locales/en.json'
 import ptBR from 'app-config/locales/pt-BR.json'
-
-import '@fluido/react-components/dist/styles/elevation.scss'
-import '@fluido/react-components/dist/styles/material.scss'
+import { PageProvider } from 'app-hooks/page'
 import 'app-styles/main.scss'
-import { useEffect } from 'react'
+import { AppProps } from 'next/app'
+import React, { useEffect } from 'react'
 import { getI18n } from 'react-i18next'
 
 loadI18Next({
@@ -25,7 +23,6 @@ loadI18Next({
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
   useTheme(!process.browser)
   const { page, ...props } = pageProps || {}
-  PageState.set(page)
 
   useEffect(() => {
     if (router.locale) {
@@ -34,7 +31,11 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
     }
   }, [router.locale])
 
-  return <Component {...props} />
+  return (
+    <PageProvider value={page}>
+      <Component {...props} />
+    </PageProvider>
+  )
 }
 
 export default MyApp

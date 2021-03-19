@@ -1,27 +1,42 @@
 import Document, {
-  Html,
+  DocumentContext,
   Head,
+  Html,
   Main,
   NextScript,
-  DocumentContext,
 } from 'next/document'
-import { ReactElement } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
-class MyDocument extends Document<{ styleTags: Array<ReactElement> }> {
+class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
-    const page = ctx.renderPage((App) => (props) =>
-      sheet.collectStyles(<App {...props} />),
-    )
-    const styletTags = sheet.getStyleElement()
+    const oldRenderPage = ctx.renderPage
 
-    return { ...page, styletTags }
+    try {
+      ctx.renderPage = () =>
+        oldRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      const styletTags = sheet.getStyleElement()
+
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {styletTags}
+          </>
+        ),
+      }
+    } finally {
+      sheet.seal()
+    }
   }
 
   render() {
-    const { styleTags } = this.props
-
     return (
       <Html>
         <Head>
@@ -39,7 +54,6 @@ class MyDocument extends Document<{ styleTags: Array<ReactElement> }> {
             crossOrigin='anonymous'
             href='https://fonts.googleapis.com/css2?family=Roboto&display=swap'
           />
-          {styleTags}
         </Head>
         <body>
           <Main />
