@@ -7,28 +7,28 @@ Base para aplicações web da Fluido
 ```bash
 .
 |-📁 config                    # module-alias: app-config
+  |-📁locales                  # Arquivos em json para carregar linguagem
   |-📄 firebase-admin-sdk.json # Chave de configuração do Admin Firebase
   |-📄 firebase-web-sdk.json   # Chave de configuração do Firebase Web
   |-📄 locale.json             # Arquivo de configuração de multilinguagem
-|-📁 pages                     # module-alias: app-pages
-  |-📁 api                     # module-alias: app-api
-    |-📄 _template.ts          # Aquivo de requisição HTTP Base
-    |-📄 [name].ts             # Aquivo de requisição HTTP Base /api/[name]
-  |-📄 _app.tsx                # No base da aplicação
-  |-📄 _document.tsx           # Definição global do arquivo .html
-  |-📄 index.tsx               # Pagina Home da aplicação
-  |-📄 [name].tsx              # Definição de uma pagina /[name]
-  |-📁 [name]
-    |📄 -index.tsx             # Definição de uma pagina /[name]
-    |📄 -[name2].tsx           # Definição de uma pagina /[name]/[name2]
 |-📁 public                    # Aquivos de acesso públicos
 |-📁 src
+  |-📁 client                  # module-alias: app-client
   |-📁 components              # module-alias: app-components
   |-📁 hooks                   # module-alias: app-hooks
-  |-📁 libs
-    |-📁 server                # module-alias: app-libs/server
-    |-📁 client                # module-alias: app-libs/client
-|-📁 styles                    # module-alias: app-styles
+  |-📁 pages                   # module-alias: app-pages
+    |-📁 api                   # module-alias: app-api
+      |-📄 _template.ts        # Aquivo de requisição HTTP Base
+      |-📄 [name].ts           # Aquivo de requisição HTTP Base /api/[name]
+    |-📄 _app.tsx              # No base da aplicação
+    |-📄 _document.tsx         # Definição global do arquivo .html
+    |-📄 index.tsx             # Pagina Home da aplicação
+    |-📄 [name].tsx            # Definição de uma pagina /[name]
+    |-📁 [name]
+      |📄 -index.tsx           # Definição de uma pagina /[name]
+      |📄 -[name2].tsx         # Definição de uma pagina /[name]/[name2]
+  |-📁 server                  # module-alias: app-server
+  |-📁 styles                  # module-alias: app-styles
 |-📄 next.config.js            # Arquivo de configuração do NextJS
 ```
 
@@ -54,11 +54,11 @@ Local dos componentes visuais
 
 Local dos [HookStates](https://hookstate.js.org/) globais
 
-### app-libs/server
+### app-server
 
 Local das ferramentas que são executadas do lado do servidor
 
-### app-libs/client
+### app-client
 
 Local das ferramentas que são executadas do lado do cliente(browser)
 
