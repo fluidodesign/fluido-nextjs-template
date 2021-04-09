@@ -1,3 +1,4 @@
+import React from 'react'
 import Document, {
   DocumentContext,
   Head,
@@ -6,6 +7,10 @@ import Document, {
   NextScript,
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+
+if (!process.browser) {
+  React.useLayoutEffect = () => {}
+}
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

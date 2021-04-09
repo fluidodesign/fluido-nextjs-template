@@ -1,15 +1,18 @@
-import '@fluido/react-components/dist/styles/elevation.scss'
-import '@fluido/react-components/dist/styles/material.scss'
+import React, { useEffect } from 'react'
+import { PageProvider } from 'app-hooks/page'
+import { AppProps } from 'next/app'
+import { getI18n } from 'react-i18next'
+import { NotificationProvider } from '@fluido/react-notification'
 import { useTheme } from '@fluido/react-effects'
 import { loadI18Next } from '@fluido/react-utils'
+
 import locale from 'app-config/locale.json'
 import en from 'app-config/locales/en.json'
 import ptBR from 'app-config/locales/pt-BR.json'
-import { PageProvider } from 'app-hooks/page'
+
+import '@fluido/sass-styles/lib/elevation.scss'
+import '@fluido/sass-styles/lib/material.scss'
 import 'app-styles/main.scss'
-import { AppProps } from 'next/app'
-import React, { useEffect } from 'react'
-import { getI18n } from 'react-i18next'
 
 loadI18Next({
   defaultLocale: locale.defaultLocale,
@@ -33,7 +36,9 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
 
   return (
     <PageProvider value={page}>
-      <Component {...props} />
+      <NotificationProvider>
+        <Component page={page} {...props} />
+      </NotificationProvider>
     </PageProvider>
   )
 }

@@ -1,11 +1,15 @@
-import { joinStaticProps } from '@fluido/react-utils'
-import { GetStaticProps, NextPage } from 'next'
+import { getStaticInternal, joinStaticProps } from '@fluido/nextjs-utils'
+import { NextPage } from 'next'
 import Head from 'next/head'
 import { useTranslation } from 'react-i18next'
 
-interface HomePageProps {}
+interface HomePageProps {
+  page?: {
+    content?: string
+  }
+}
 
-const HomePage: NextPage<HomePageProps> = () => {
+const HomePage: NextPage<HomePageProps> = ({ page }) => {
   const { t } = useTranslation()
 
   return (
@@ -16,10 +20,17 @@ const HomePage: NextPage<HomePageProps> = () => {
         </title>
       </Head>
       <h1>Home Page</h1>
+      <p>{page.content}</p>
     </>
   )
 }
 
 export default HomePage
 
-export const getStaticProps = joinStaticProps()
+export const getStaticProps = joinStaticProps(
+  getStaticInternal(
+    'page.content',
+    () =>
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, iste?',
+  ),
+)
