@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "app-config/*": ["./config/*"],
       "app-common/*": ["./src/common/*"],
       "app-components/*": ["./src/components/*"],
       "app-hooks/*": ["./src/hooks/*"],
