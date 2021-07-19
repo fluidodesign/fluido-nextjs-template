@@ -10,5 +10,5 @@ Accept: application/json, text/plain
 ###
 
 GET https://jsonplaceholder.typicode.com/todos HTTP/2.0
-Content-Type: application/
+Content-Type: application/json
 Accept: application/json, text/plain

@@ -1,67 +1,34 @@
-# Fluido WebApp Template
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Base para aplicações web da Fluido
+## Getting Started
 
-## Estrutura de arquivos
+First, run the development server:
 
 ```bash
-.
-|-📁 config                    # module-alias: app-config
-  |-📁locales                  # Arquivos em json para carregar linguagem
-  |-📄 firebase-admin-sdk.json # Chave de configuração do Admin Firebase
-  |-📄 firebase-web-sdk.json   # Chave de configuração do Firebase Web
-  |-📄 locale.json             # Arquivo de configuração de multilinguagem
-|-📁 public                    # Aquivos de acesso públicos
-|-📁 src
-  |-📁 client                  # module-alias: app-client
-  |-📁 components              # module-alias: app-components
-  |-📁 hooks                   # module-alias: app-hooks
-  |-📁 pages                   # module-alias: app-pages
-    |-📁 api                   # module-alias: app-api
-      |-📄 _template.ts        # Aquivo de requisição HTTP Base
-      |-📄 [name].ts           # Aquivo de requisição HTTP Base /api/[name]
-    |-📄 _app.tsx              # No base da aplicação
-    |-📄 _document.tsx         # Definição global do arquivo .html
-    |-📄 index.tsx             # Pagina Home da aplicação
-    |-📄 [name].tsx            # Definição de uma pagina /[name]
-    |-📁 [name]
-      |📄 -index.tsx           # Definição de uma pagina /[name]
-      |📄 -[name2].tsx         # Definição de uma pagina /[name]/[name2]
-  |-📁 server                  # module-alias: app-server
-  |-📁 styles                  # module-alias: app-styles
-|-📄 next.config.js            # Arquivo de configuração do NextJS
+npm run dev
+# or
+yarn dev
 ```
 
-## Descrição dos modulos
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### app-config
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-Local de arquivos de configurações
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
 
-### app-pages
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-Local de definição das paginas da aplicação
+## Learn More
 
-### app-api
+To learn more about Next.js, take a look at the following resources:
 
-Local dos micro serviços da aplicação
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### app-components
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Local dos componentes visuais
+## Deploy on Vercel
 
-### app-hooks
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Local dos [HookStates](https://hookstate.js.org/) globais
-
-### app-server
-
-Local das ferramentas que são executadas do lado do servidor
-
-### app-client
-
-Local das ferramentas que são executadas do lado do cliente(browser)
-
-### app-styles
-
-Local de armazenamento dos arquivos de estilo globais. (_css_ | _scss_ | _sass_)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

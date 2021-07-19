@@ -1,20 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "app-components/*": ["src/components/*"],
-      "app-hooks/*": ["src/hooks/*"],
-      "app-client/*": ["src/client/*"],
-      "app-server/*": ["src/server/*"],
-      "app-config/*": ["config/*"],
-      "app-styles/*": ["src/styles/*"],
-      "app-pages/*": ["src/pages/*"],
-      "app-api/*": ["src/pages/api/*"]
-    },
-    "target": "esnext",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -23,16 +13,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "allowJs": true
+    "baseUrl": ".",
+    "paths": {
+      "app-common/*": ["./src/common/*"],
+      "app-components/*": ["./src/components/*"],
+      "app-hooks/*": ["./src/hooks/*"],
+      "app-pages/*": ["./src/pages/*"],
+      "app-api/*": ["./src/pages/api/*"],
+      "app-services/*": ["./src/services/*"],
+      "app-styles/*": ["./src/styles/*"]
+    }
   },
-  "exclude": ["node_modules"],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
-    "**/*.json",
-    "**/*.css",
-    "**/*.scss"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
