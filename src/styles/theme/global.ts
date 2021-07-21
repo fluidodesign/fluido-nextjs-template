@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 export const ResetStyles = createGlobalStyle`
   :root,
@@ -83,6 +83,26 @@ export const ResetStyles = createGlobalStyle`
     margin: 0 1rem;
   }
 `
-export const GlobalStyles = createGlobalStyle`
 
+const darkTheme = css``
+
+/* Definição geral do tema */
+
+export const GlobalStyles = createGlobalStyle`
+  :root {
+  }
+
+  :root,
+  :root[light-theme] {
+  }
+
+  :root[dark-theme] {
+    ${darkTheme}
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([light-theme]) {
+      ${darkTheme}
+    }
+  }
 `
